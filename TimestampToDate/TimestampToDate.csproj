@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TimestampToDate.Lib\TimestampToDate.Lib.csproj" />
+  </ItemGroup>
+
 </Project>

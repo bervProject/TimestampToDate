@@ -1,6 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using TimestampToDate.Lib.Utils;
 
 namespace TimestampToDate
 {
@@ -17,29 +17,9 @@ namespace TimestampToDate
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string timestampString = source.Text;
-            string result = ConvertTimestampToDateTimeString(timestampString);
+            string result = Converter.ConvertTimestampToDateTimeString(timestampString);
             destination.Text = result;
         }
-
-        private static string ConvertTimestampToDateTimeString(string timestamp)
-        {
-            bool parsable = long.TryParse(timestamp, out long timestampLong);
-            if (!parsable)
-            {
-                return string.Empty;
-            }
-            try
-            {
-                DateTimeOffset dateTime = DateTimeOffset.FromUnixTimeMilliseconds(timestampLong);
-                return dateTime.ToLocalTime()
-                               .ToString();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return string.Empty;
-            }
-
-        }
+        
     }
 }
